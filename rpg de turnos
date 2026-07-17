@@ -1,0 +1,115 @@
+jogador = {
+    "moedas": 300,
+    "pocoes": 0,
+    "vida": 100,
+    "vida_vilao": 130
+}
+def comprar_pocao(dados, preco):
+    if dados["moedas"] >=preco:
+        dados["moedas"] -=preco
+        dados["pocoes"] +=1
+        print("você comprou uma poção")
+        return True
+    else:
+        print("você não tem moedas o suficiente")
+        return False
+    
+def usar_pocao(dados):
+    if dados["pocoes"] >0:
+        dados["pocoes"] -=1
+        dados["vida"] +=50
+        print("você usou uma poção, sua vida recuperou 50 pontos")
+
+    else:
+        print("você não tem poções o suficiente")
+
+while True:
+    print("-------------BEM-VINDO AO JOGO-------------")
+    print("digite 1 para entrar na loja de poções")
+    print("digite 2 para lutrar contra o boss")
+    print("digite 3 para ver seu inventário")
+    print("digite 4 para sair do jogo")
+    escolha = int(input("qual a sua escolha?"))
+
+    if escolha ==1:
+        while True:
+            print("seu inventário está assim:", jogador)
+
+            escolha = input("você deseja comprar uma poção?")
+            if escolha =="sim":
+                comprar_pocao(jogador, 20)
+
+            elif escolha =="não":
+                print("obrigado pela compra")
+                break
+            else:
+                print("comando não reconhecido")
+    elif escolha ==2:
+        print("você entrou em combate")
+        while True:
+            escolha = input("você quer atacar, curar ou fugir?")
+            if escolha =="atacar":
+                jogador["vida_vilao"] -=20
+                print("você atacou o vilão, e acertou 20 de dano")
+                print(jogador["vida_vilao"])
+                if jogador["vida_vilao"] <=0:
+                    print("você derrotou o vilão")
+                    break
+            elif escolha =="curar":
+                    usar_pocao(jogador)
+
+                
+
+            elif escolha =="fugir":
+                print("você saiu de combate")
+                break
+            else:
+                print("comando não reconhecido")
+
+
+
+            print("turno do boss")
+            dano = 30
+            jogador["vida"] -=dano
+            print("o vilão te atacou e acertou", dano, "de dano")
+            print("você está com", jogador["vida"], "de vida")
+            
+            if jogador["vida"] <=0:
+                print("você foi derrotado")
+                break
+
+    elif escolha ==3:
+        print("seu inventário está assim:", jogador)
+
+    elif escolha==4:
+        print("você saiu do jogo")
+        break
+    
+    else:
+        print("comando não reconhecido")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
